@@ -4,7 +4,7 @@ defmodule PolicrMini.Repo.Migrations.CreateMessageSnapshots do
   def change do
     create table(:message_snapshots) do
       add :chat_id, references(:chats), comment: "聊天编号"
-      add :message_id, :string, comment: "消息编号"
+      add :message_id, :integer, comment: "消息编号"
       add :from_user_id, :integer, comment: "来源用户编号"
       add :from_user_name, :string, comment: "来源用户名称"
       add :date, :integer, comment: "日期（时间戳）"
