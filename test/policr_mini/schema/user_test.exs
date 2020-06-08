@@ -42,7 +42,6 @@ defmodule PolicrMini.Schema.UserTest do
     }
 
     changeset = User.changeset(user, params)
-    assert changeset.valid?
     assert changeset.params == params
     assert changeset.data == user
     assert changeset.changes == changes
@@ -51,5 +50,7 @@ defmodule PolicrMini.Schema.UserTest do
     assert changeset.required == [
              :id
            ]
+
+    assert changeset.valid?
   end
 end

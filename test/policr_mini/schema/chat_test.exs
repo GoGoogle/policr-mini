@@ -52,7 +52,6 @@ defmodule PolicrMini.Schema.ChatTest do
     }
 
     changeset = Chat.changeset(chat, params)
-    assert changeset.valid?
     assert changeset.params == params
     assert changeset.data == chat
     assert changeset.changes == changes
@@ -62,5 +61,7 @@ defmodule PolicrMini.Schema.ChatTest do
              :id,
              :type
            ]
+
+    assert changeset.valid?
   end
 end
