@@ -37,6 +37,15 @@ defmodule PolicrMini.Factory do
     }
   end
 
+  def build(:scheme) do
+    %PolicrMini.Schema.Scheme{
+      verification_mode: 0,
+      seconds: 80,
+      killing_method: 0,
+      highlighted: true
+    }
+  end
+
   def build(factory_name, attrs) when is_atom(factory_name) and is_list(attrs) do
     factory_name |> build() |> struct(attrs)
   end
