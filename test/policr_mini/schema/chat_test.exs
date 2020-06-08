@@ -31,8 +31,8 @@ defmodule PolicrMini.Schema.ChatTest do
 
     updated_type = "private"
     updated_title = "标题"
-    updated_username = "一"
-    updated_description = "xinyi"
+    updated_username = "新 Elixir 交流群"
+    updated_description = "elixir_new_chat"
     updated_invite_link = "https://t.me/fIkcDF"
 
     params = %{

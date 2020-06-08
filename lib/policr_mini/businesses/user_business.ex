@@ -11,4 +11,8 @@ defmodule PolicrMini.UserBusiness do
   def create(params) do
     %User{} |> User.changeset(params) |> Repo.insert()
   end
+
+  def update(%User{} = user, attrs) do
+    user |> User.changeset(attrs) |> Repo.update()
+  end
 end
