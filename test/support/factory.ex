@@ -30,6 +30,13 @@ defmodule PolicrMini.Factory do
     }
   end
 
+  def build(:custom_kit) do
+    %PolicrMini.Schema.CustomKit{
+      title: "猫吃老鼠吗？",
+      answer_body: "+吃 -不吃"
+    }
+  end
+
   def build(factory_name, attrs) when is_atom(factory_name) and is_list(attrs) do
     factory_name |> build() |> struct(attrs)
   end
