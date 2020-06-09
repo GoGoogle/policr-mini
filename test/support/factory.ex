@@ -43,7 +43,7 @@ defmodule PolicrMini.Factory do
       verification_mode: 0,
       seconds: 80,
       killing_method: 0,
-      highlighted: true
+      is_highlighted: true
     }
   end
 

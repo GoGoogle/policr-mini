@@ -5,7 +5,7 @@ defmodule PolicrMini.Schema.Scheme do
   alias PolicrMini.EctoEnums.{VerificationModeEnum, KillingMethodEnum}
 
   @required_fields ~w(chat_id)a
-  @optional_fields ~w(verification_mode seconds killing_method highlighted)a
+  @optional_fields ~w(verification_mode seconds killing_method is_highlighted)a
 
   schema "schemes" do
     belongs_to :chat, Chat
@@ -13,7 +13,7 @@ defmodule PolicrMini.Schema.Scheme do
     field :verification_mode, VerificationModeEnum
     field :seconds, :integer
     field :killing_method, KillingMethodEnum
-    field :highlighted, :boolean
+    field :is_highlighted, :boolean
 
     timestamps()
   end

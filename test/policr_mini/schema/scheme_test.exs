@@ -15,7 +15,7 @@ defmodule PolicrMini.Schema.SchemeTest do
                  :verification_mode,
                  :seconds,
                  :killing_method,
-                 :highlighted,
+                 :is_highlighted,
                  :inserted_at,
                  :updated_at
                ]
@@ -30,20 +30,20 @@ defmodule PolicrMini.Schema.SchemeTest do
     updated_verification_mode = 1
     updated_seconds = 120
     updated_killing_method = 1
-    updated_highlighted = false
+    updated_is_highlighted = false
 
     params = %{
       "verification_mode" => updated_verification_mode,
       "seconds" => updated_seconds,
       "killing_method" => updated_killing_method,
-      "highlighted" => updated_highlighted
+      "is_highlighted" => updated_is_highlighted
     }
 
     changes = %{
       verification_mode: :custom,
       seconds: updated_seconds,
       killing_method: :kick,
-      highlighted: updated_highlighted
+      is_highlighted: updated_is_highlighted
     }
 
     changeset = Scheme.changeset(scheme, params)
