@@ -13,6 +13,8 @@ defmodule PolicrMini.Schema.SchemeTest do
                  :id,
                  :chat_id,
                  :verification_mode,
+                 :verification_entrance,
+                 :is_privately,
                  :seconds,
                  :killing_method,
                  :is_highlighted,
@@ -28,12 +30,16 @@ defmodule PolicrMini.Schema.SchemeTest do
     scheme = Factory.build(:scheme, chat_id: 123_456_789_011)
 
     updated_verification_mode = 1
+    updated_verification_entrance = 0
+    updated_is_privately = true
     updated_seconds = 120
     updated_killing_method = 1
     updated_is_highlighted = false
 
     params = %{
       "verification_mode" => updated_verification_mode,
+      "verification_entrance" => updated_verification_entrance,
+      "is_privately" => updated_is_privately,
       "seconds" => updated_seconds,
       "killing_method" => updated_killing_method,
       "is_highlighted" => updated_is_highlighted
@@ -41,6 +47,8 @@ defmodule PolicrMini.Schema.SchemeTest do
 
     changes = %{
       verification_mode: :custom,
+      verification_entrance: :unity,
+      is_privately: true,
       seconds: updated_seconds,
       killing_method: :kick,
       is_highlighted: updated_is_highlighted
