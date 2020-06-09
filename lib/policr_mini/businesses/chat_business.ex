@@ -47,8 +47,6 @@ defmodule PolicrMini.ChatBusiness do
       |> Enum.each(fn params ->
         {:ok, _} = PermissionBusiness.fetch(chat.id, params.user_id, params)
       end)
-
-      {:ok, :success}
     end)
   end
 

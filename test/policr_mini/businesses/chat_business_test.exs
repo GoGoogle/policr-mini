@@ -2,7 +2,7 @@ defmodule PolicrMini.ChatBusinessTest do
   use PolicrMini.DataCase
 
   alias PolicrMini.Factory
-  alias PolicrMini.ChatBusiness
+  alias PolicrMini.{ChatBusiness, UserBusiness, PermissionBusiness}
 
   def build_params(attrs \\ []) do
     user = Factory.build(:chat)
@@ -79,5 +79,94 @@ defmodule PolicrMini.ChatBusinessTest do
     {:ok, chat2} = chat1 |> ChatBusiness.takeover_cancelled()
     assert chat2.is_take_over == false
     assert struct(chat2, is_take_over: true) == chat1
+  end
+
+  test "reset_administrators/2" do
+    chat_params = build_params()
+    {:ok, chat} = ChatBusiness.create(chat_params)
+    {:ok, user1} = UserBusiness.create(Factory.build(:user) |> Map.from_struct())
+
+    chat
+    |> ChatBusiness.reset_administrators([
+      Factory.build(:permission, user_id: user1.id)
+    ])
+
+    users = ChatBusiness.find_administrators(chat.id)
+    assert length(users) == 1
+    assert hd(users) == user1
+
+    {:ok, user2} = UserBusiness.create(Factory.build(:user, id: 1_988_756) |> Map.from_struct())
+
+    {:ok, _} =
+      chat
+      |> ChatBusiness.reset_administrators([
+        Factory.build(:permission, user_id: user1.id, tg_is_owner: false),
+        Factory.build(:permission, user_id: user2.id)
+      ])
+
+    users = ChatBusiness.find_administrators(chat.id)
+    assert length(users) == 2
+    assert hd(users) == user1
+    permission = PermissionBusiness.find(chat.id, user1.id)
+    assert permission.tg_is_owner == false
+
+    {:ok, _} = chat |> ChatBusiness.reset_administrators([])
+    users = ChatBusiness.find_administrators(chat.id)
+    assert length(users) == 0
+  end
+
+  test "find_list/1" do
+    chat_params = build_params()
+    {:ok, chat1} = ChatBusiness.create(chat_params)
+    {:ok, chat2} = ChatBusiness.create(chat_params |> Map.put(:id, 1_987_654_321))
+    {:ok, user} = UserBusiness.create(Factory.build(:user) |> Map.from_struct())
+
+    {:ok, _} =
+      chat1
+      |> ChatBusiness.reset_administrators([
+        Factory.build(:permission, user_id: user.id)
+      ])
+
+    {:ok, _} =
+      chat2
+      |> ChatBusiness.reset_administrators([
+        Factory.build(:permission, user_id: user.id)
+      ])
+
+    chats = ChatBusiness.find_list(user.id)
+    assert length(chats) == 2
+
+    {_, _} = PermissionBusiness.delete(chat1.id, user.id)
+
+    chats = ChatBusiness.find_list(user.id)
+    assert length(chats) == 1
+    assert hd(chats) == chat2
+  end
+
+  test "find_administrators/1" do
+    chat_params = build_params()
+    {:ok, chat} = ChatBusiness.create(chat_params)
+    {:ok, user1} = UserBusiness.create(Factory.build(:user) |> Map.from_struct())
+
+    chat
+    |> ChatBusiness.reset_administrators([
+      Factory.build(:permission, user_id: user1.id)
+    ])
+
+    users = ChatBusiness.find_administrators(chat.id)
+    assert length(users) == 1
+    assert hd(users) == user1
+
+    {:ok, user2} = UserBusiness.create(Factory.build(:user, id: 1_988_756) |> Map.from_struct())
+
+    {:ok, _} =
+      chat
+      |> ChatBusiness.reset_administrators([
+        Factory.build(:permission, user_id: user1.id, tg_is_owner: false),
+        Factory.build(:permission, user_id: user2.id)
+      ])
+
+    users = ChatBusiness.find_administrators(chat.id)
+    assert length(users) == 2
   end
 end
