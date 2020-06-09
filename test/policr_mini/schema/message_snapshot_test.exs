@@ -37,7 +37,7 @@ defmodule PolicrMini.Schema.MessageSnapshotTest do
     updated_date = 1_591_654_974
     updated_photo_id = "DoLdIkjJDx"
     updated_caption = "请回答问题「图片中的事物是？」。您有 20 秒的时间通过此验证，超时将从群组【Elixir 中文交流】中封禁。"
-    updated_markup_body = "[老鹰](123456789011:1) [小鸡](123456789011:2)"
+    updated_markup_body = "[老鹰](12345:1) [小鸡](12345:2)"
 
     params = %{
       "message_id" => updated_message_id,

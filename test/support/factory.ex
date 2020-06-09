@@ -10,7 +10,7 @@ defmodule PolicrMini.Factory do
 
   def build(:chat) do
     %PolicrMini.Schema.Chat{
-      id: 123_456_789_011,
+      id: 123_456_789_0,
       type: "supergroup",
       title: "Elixir 编程语言",
       small_photo_id: "KdIlCrIKzd",

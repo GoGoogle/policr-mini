@@ -19,7 +19,7 @@ defmodule PolicrMini.UserBusinessTest do
     assert user.username == user_params.username
   end
 
-  test "update/1" do
+  test "update/2" do
     user_params = build_params()
     {:ok, user1} = UserBusiness.create(user_params)
 
@@ -52,7 +52,6 @@ defmodule PolicrMini.UserBusinessTest do
   test "fetch/1 and existing data" do
     {:ok, user1} = UserBusiness.create(build_params())
     updated_username = "xinyi"
-    {:ok, _} = user1 |> UserBusiness.update(%{username: updated_username})
     {:ok, user2} = UserBusiness.fetch(user1.id, build_params(username: updated_username))
 
     assert user2.username == updated_username

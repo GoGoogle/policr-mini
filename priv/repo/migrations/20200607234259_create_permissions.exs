@@ -13,5 +13,7 @@ defmodule PolicrMini.Repo.Migrations.CreatePermissions do
 
       timestamps()
     end
+
+    create unique_index("permissions", [:chat_id, :user_id])
   end
 end
