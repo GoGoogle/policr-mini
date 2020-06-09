@@ -6,7 +6,6 @@ defmodule PolicrMini.Schema.Permission do
   @required_fields ~w(chat_id user_id tg_is_owner tg_can_promote_members tg_can_restrict_members)a
   @optional_fields ~w(readable writable)a
 
-  @primary_key {:id, :integer, autogenerate: false}
   schema "permissions" do
     belongs_to :chat, Chat
     belongs_to :user, User
