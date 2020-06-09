@@ -41,6 +41,8 @@ defmodule PolicrMini.Factory do
   def build(:scheme) do
     %PolicrMini.Schema.Scheme{
       verification_mode: 0,
+      verification_entrance: 0,
+      verification_occasion: 0,
       seconds: 80,
       killing_method: 0,
       is_highlighted: true
