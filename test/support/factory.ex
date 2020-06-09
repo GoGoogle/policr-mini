@@ -13,8 +13,8 @@ defmodule PolicrMini.Factory do
       id: 123_456_789_011,
       type: "supergroup",
       title: "Elixir 编程语言",
-      small_photo_id: "asdfghjkl",
-      big_photo_id: "ASDFGHJKL",
+      small_photo_id: "KdIlCrIKzd",
+      big_photo_id: "OkdiOAdjioI",
       username: "elixir_cn",
       description: "Elixir 编程语言中文交流群"
     }
@@ -53,7 +53,16 @@ defmodule PolicrMini.Factory do
       from_user_name: "小新",
       date: 1_591_654_677,
       text: "请回答问题「1 + 1 = ?」。您有 20 秒的时间通过此验证，超时将从群组【Elixir 中文交流】中封禁。",
-      markup_body: "[3](123456789011:1) [2](123456789011:2)"
+      markup_body: "[3](101:1) [2](101:2)"
+    }
+  end
+
+  def build(:verification) do
+    %PolicrMini.Schema.Verification{
+      message_id: 1234,
+      indices: [1, 3],
+      seconds: 60,
+      status: 0
     }
   end
 
