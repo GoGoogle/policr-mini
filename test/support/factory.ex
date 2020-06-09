@@ -16,7 +16,8 @@ defmodule PolicrMini.Factory do
       small_photo_id: "KdIlCrIKzd",
       big_photo_id: "OkdiOAdjioI",
       username: "elixir_cn",
-      description: "Elixir 编程语言中文交流群"
+      description: "Elixir 编程语言中文交流群",
+      is_take_over: true
     }
   end
 

@@ -12,6 +12,7 @@ defmodule PolicrMini.Repo.Migrations.CreateChats do
       add :username, :string, comment: "用户名"
       add :description, :text, comment: "说明"
       add :invite_link, :string, comment: "邀请链接"
+      add :is_take_over, :boolean, comment: "是否被接管"
 
       timestamps()
     end

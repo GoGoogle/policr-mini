@@ -53,7 +53,7 @@ defmodule PolicrMini.UserBusinessTest do
     {:ok, user1} = UserBusiness.create(build_params())
     updated_username = "xinyi"
     {:ok, _} = user1 |> UserBusiness.update(%{username: updated_username})
-    {:ok, user2} = UserBusiness.fetch(user1.id, build_params())
+    {:ok, user2} = UserBusiness.fetch(user1.id, build_params(username: updated_username))
 
     assert user2.username == updated_username
   end

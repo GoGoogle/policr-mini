@@ -18,6 +18,7 @@ defmodule PolicrMini.Schema.ChatTest do
                  :username,
                  :description,
                  :invite_link,
+                 :is_take_over,
                  :inserted_at,
                  :updated_at
                ]
@@ -59,7 +60,8 @@ defmodule PolicrMini.Schema.ChatTest do
 
     assert changeset.required == [
              :id,
-             :type
+             :type,
+             :is_take_over
            ]
 
     assert changeset.valid?
