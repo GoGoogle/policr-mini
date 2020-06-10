@@ -2,13 +2,15 @@ defmodule PolicrMini.Schema.Verification do
   use PolicrMini.Schema
 
   alias PolicrMini.EctoEnums.VerificationStatusEnum
+  alias PolicrMini.Schema.{Chat, MessageSnapshot}
 
   @required_fields ~w(chat_id message_snapshot_id message_id indices seconds status)a
   @optional_fields ~w(chosen)a
 
   schema "verifications" do
-    field :chat_id, :integer
-    field :message_snapshot_id, :integer
+    belongs_to :chat, Chat
+    belongs_to :message_snapshot, MessageSnapshot
+
     field :message_id, :integer
     field :indices, {:array, :integer}
     field :seconds, :integer
